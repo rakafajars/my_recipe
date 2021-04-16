@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_recipe/ui/pages/home.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:food_recipe/theme/theme_color.dart';
+import 'package:food_recipe/theme/theme_text.dart';
+import 'package:food_recipe/ui/pages/home/home.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -30,34 +31,31 @@ class SplashScreen extends StatelessWidget {
                   children: [
                     Text(
                       '2K+ Resep Pilihan Terbaik',
-                      style: GoogleFonts.nunitoSans(
-                        fontWeight: FontWeight.w300,
+                      style: myNunitoSans.headline2.copyWith(
                         fontSize: 18,
-                        color: Colors.white.withOpacity(
+                        color: whiteColor.withOpacity(
                           0.8,
                         ),
                       ),
                     ),
                     Text(
                       'Premium\nRecipe\nFor You!',
-                      style: GoogleFonts.halant(
-                        fontWeight: FontWeight.w500,
+                      style: myHalant.headline6.copyWith(
                         fontSize: 32,
-                        color: Colors.white,
+                        color: whiteColor,
                       ),
                     ),
                     ElevatedButton(
                       child: Text(
                         'Get Started',
-                        style: GoogleFonts.halant(
-                          fontWeight: FontWeight.w500,
+                        style: myHalant.headline6.copyWith(
                           fontSize: 20,
-                          color: Colors.white,
+                          color: whiteColor,
                         ),
                       ),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          Color(0xFF1DA183),
+                          grenColor,
                         ),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(

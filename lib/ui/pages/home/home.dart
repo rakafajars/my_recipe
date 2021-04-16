@@ -1,6 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:food_recipe/theme/theme_color.dart';
+import 'package:food_recipe/theme/theme_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 
@@ -15,9 +16,7 @@ class _HomePageState extends State<HomePage> {
     return RelativeBuilder(
       builder: (context, height, width, sy, sx) {
         return Scaffold(
-          backgroundColor: Color(
-            0xFFFFFFFF,
-          ),
+          backgroundColor: whiteColor,
           body: SafeArea(
             child: SingleChildScrollView(
               padding: EdgeInsets.only(
@@ -45,17 +44,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Text(
                       'Mau Masak Apa\nHari Ini ?',
-                      style: GoogleFonts.halant(
+                      style: myHalant.headline6.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 28,
-                        color: Color(
-                          0xFF0F0F11,
-                        ),
+                        color: blackColor,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 24,
+                    height: 12,
                   ),
 
                   /// Search Widget
@@ -65,9 +62,7 @@ class _HomePageState extends State<HomePage> {
                       right: 31,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(
-                        0xFFF6F7FC,
-                      ),
+                      color: whiteColor1,
                       borderRadius: BorderRadius.all(
                         Radius.circular(
                           16.0,
@@ -80,19 +75,14 @@ class _HomePageState extends State<HomePage> {
                         prefixIcon: Icon(
                           Icons.search_sharp,
                           size: 14,
-                          color: Color(
-                            0xFF0F0F11,
-                          ).withOpacity(
+                          color: blackColor.withOpacity(
                             0.6,
                           ),
                         ),
                         hintText: 'Cari Resep Favorit Kamu',
-                        hintStyle: GoogleFonts.nunitoSans(
+                        hintStyle: myNunitoSans.headline3.copyWith(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color(
-                            0xFF0F0F11,
-                          ).withOpacity(
+                          color: blackColor.withOpacity(
                             0.6,
                           ),
                         ),
@@ -100,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 32,
+                    height: 12,
                   ),
 
                   /// Menu Makanan
@@ -110,13 +100,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Text(
                       'Resep Terbaru',
-                      style: GoogleFonts.halant(
+                      style: myHalant.headline6.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 22,
                         fontStyle: FontStyle.normal,
-                        color: Color(
-                          0xFF0F0F11,
-                        ),
+                        color: blackColor,
                       ),
                     ),
                   ),
@@ -161,17 +149,19 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           'Rekomendasi',
-                          style: GoogleFonts.halant(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 22,
-                              color: Color(0xFF0F0F11)),
+                          style: myHalant.headline6.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22,
+                            color: blackColor,
+                          ),
                         ),
                         Text(
                           'Lihat Semua',
-                          style: GoogleFonts.halant(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                              color: Color(0xFF1DA183)),
+                          style: myHalant.headline6.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            color: grenColor1,
+                          ),
                         ),
                       ],
                     ),
@@ -233,10 +223,10 @@ class _HomePageState extends State<HomePage> {
                                 'Nasi Goreng Rempah Malang',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.nunitoSans(
+                                style: myNunitoSans.headline6.copyWith(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
-                                  color: Color(0xFF0F0F11),
+                                  color: blackColor,
                                 ),
                               ),
                               SizedBox(
@@ -254,8 +244,7 @@ class _HomePageState extends State<HomePage> {
                                       Icon(
                                         Icons.access_time,
                                         size: 12,
-                                        color:
-                                            Color(0xFF0F0F11).withOpacity(0.6),
+                                        color: blackColor.withOpacity(0.6),
                                       ),
                                       SizedBox(
                                         width: 4,
@@ -280,8 +269,7 @@ class _HomePageState extends State<HomePage> {
                                       Icon(
                                         Icons.people,
                                         size: 12,
-                                        color:
-                                            Color(0xFF0F0F11).withOpacity(0.6),
+                                        color: blackColor.withOpacity(0.6),
                                       ),
                                       SizedBox(
                                         width: 4,

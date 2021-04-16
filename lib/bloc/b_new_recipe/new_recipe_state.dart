@@ -9,6 +9,12 @@ class NewRecipeInitial extends NewRecipeState {
   List<Object> get props => [];
 }
 
+class NewRecipeLoadInProgress extends NewRecipeState {
+  @override
+  List<Object> get props => [];
+}
+
+
 class NewRecipeLoadedSuccess extends NewRecipeState {
   final ModelNewRecipe modelNewRecipe;
 

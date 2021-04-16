@@ -8,3 +8,16 @@ class GetNewRecipeFromApi extends NewRecipeEvent {
   @override
   List<Object> get props => [];
 }
+
+class SearchnewRecipeFromApi extends NewRecipeEvent {
+  final String search;
+
+  SearchnewRecipeFromApi({
+    this.search,
+  });
+
+  @override
+  List<Object> get props => [
+        search,
+      ];
+}

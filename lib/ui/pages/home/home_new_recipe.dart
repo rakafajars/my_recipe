@@ -9,6 +9,12 @@ import 'package:relative_scale/relative_scale.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeNewRecipe extends StatefulWidget {
+  final NewRecipeBloc newRecipeBloc;
+
+  const HomeNewRecipe({
+    Key key,
+    this.newRecipeBloc,
+  }) : super(key: key);
   @override
   _HomeNewRecipeState createState() => _HomeNewRecipeState();
 }
@@ -23,7 +29,7 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
           width: double.infinity,
           child: BlocBuilder<NewRecipeBloc, NewRecipeState>(
             builder: (context, state) {
-              if (state is NewRecipeInitial) {
+              if (state is NewRecipeLoadInProgress) {
                 return ListView.builder(
                   padding: EdgeInsets.only(
                     left: 31,

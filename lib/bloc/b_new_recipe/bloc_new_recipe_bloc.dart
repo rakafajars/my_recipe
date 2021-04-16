@@ -6,8 +6,8 @@ import 'package:food_recipe/model/m_new_recipe.dart';
 import 'package:food_recipe/network/api_service.dart';
 import 'package:food_recipe/network/repository.dart';
 
-part 'bloc_new_recipe_event.dart';
-part 'bloc_new_recipe_state.dart';
+part 'new_recipe_event.dart';
+part 'new_recipe_state.dart';
 
 class NewRecipeBloc extends Bloc<NewRecipeEvent, NewRecipeState> {
   NewRecipeBloc() : super(NewRecipeInitial());
@@ -20,8 +20,25 @@ class NewRecipeBloc extends Bloc<NewRecipeEvent, NewRecipeState> {
     NewRecipeEvent event,
   ) async* {
     if (event is GetNewRecipeFromApi) {
+      yield NewRecipeLoadInProgress();
       try {
         _modelNewRecipe = await _repository.getNewRecipe();
+
+        yield NewRecipeLoadedSuccess(
+          modelNewRecipe: _modelNewRecipe,
+        );
+      } catch (e) {
+        yield NewRecipeLoadedError(
+          message: "$e",
+        );
+      }
+    }
+    if (event is SearchnewRecipeFromApi) {
+      yield NewRecipeLoadInProgress();
+      try {
+        _modelNewRecipe = await _repository.searchNewRecipe(
+          search: event.search,
+        );
 
         yield NewRecipeLoadedSuccess(
           modelNewRecipe: _modelNewRecipe,

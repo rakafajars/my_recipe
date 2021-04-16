@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipe/bloc/b_new_recipe/bloc_new_recipe_bloc.dart';
 import 'package:food_recipe/theme/theme_color.dart';
 import 'package:food_recipe/theme/theme_text.dart';
 import 'package:food_recipe/ui/pages/home/home_new_recipe.dart';
@@ -12,6 +14,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController _searchRecipe = TextEditingController();
+
+  NewRecipeBloc _newRecipeBloc;
+
+  @override
+  void initState() {
+    _newRecipeBloc = BlocProvider.of<NewRecipeBloc>(context);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _searchRecipe.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return RelativeBuilder(
@@ -70,7 +88,24 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _searchRecipe,
+                      onChanged: (newValue) {
+                        if (newValue.length >= 3) {
+                          _newRecipeBloc
+                            ..add(
+                              SearchnewRecipeFromApi(
+                                search: newValue,
+                              ),
+                            );
+                        }
+                        if (newValue.isEmpty) {
+                          _newRecipeBloc
+                            ..add(
+                              GetNewRecipeFromApi(),
+                            );
+                        }
+                      },
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: Icon(
@@ -112,11 +147,16 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 12,
                   ),
+
                   /// Resep Terbaru
-                  HomeNewRecipe(),
+                  HomeNewRecipe(
+                    newRecipeBloc: _newRecipeBloc,
+                  ),
+
                   SizedBox(
                     height: 14,
                   ),
+
                   /// Rekomendasi Resep
                   Padding(
                     padding: const EdgeInsets.only(

@@ -1,16 +1,13 @@
 # food_recipe
 
-A new Flutter application.
+# Design
+https://dribbble.com/shots/15438953-Foods-Recipe-App
 
-## Getting Started
+# App Flutter
 
-This project is a starting point for a Flutter application.
+## Splash Screen
+![image](https://user-images.githubusercontent.com/73903697/115067591-57befd80-9f1b-11eb-88a5-4423c0f960ae.png)
 
-A few resources to get you started if this is your first Flutter project:
+## Home Page
+![image](https://user-images.githubusercontent.com/73903697/115067720-80df8e00-9f1b-11eb-8b8a-139805391ca7.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

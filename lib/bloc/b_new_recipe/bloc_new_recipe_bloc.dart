@@ -3,19 +3,17 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_recipe/model/m_new_recipe.dart';
-import 'package:food_recipe/repository/r_new_recipe.dart';
-import 'package:meta/meta.dart';
+import 'package:food_recipe/network/api_service.dart';
+import 'package:food_recipe/network/repository.dart';
 
 part 'bloc_new_recipe_event.dart';
 part 'bloc_new_recipe_state.dart';
 
 class NewRecipeBloc extends Bloc<NewRecipeEvent, NewRecipeState> {
-  NewRecipeBloc({
-    this.repositoryNewRecipe,
-  }) : super(NewRecipeInitial());
+  NewRecipeBloc() : super(NewRecipeInitial());
 
   ModelNewRecipe _modelNewRecipe;
-  final RepositoryNewRecipe repositoryNewRecipe;
+  Repository _repository = ApiService();
 
   @override
   Stream<NewRecipeState> mapEventToState(
@@ -24,12 +22,11 @@ class NewRecipeBloc extends Bloc<NewRecipeEvent, NewRecipeState> {
     if (event is GetNewRecipeFromApi) {
       yield NewRecipeLoadInProgress();
       try {
-        _modelNewRecipe = await repositoryNewRecipe.getNewRecipe();
+        _modelNewRecipe = await _repository.getNewRecipe();
 
         yield NewRecipeLoadedSuccess(
           modelNewRecipe: _modelNewRecipe,
         );
-
       } catch (e) {
         yield NewRecipeLoadedError(
           message: "$e",

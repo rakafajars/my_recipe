@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe/theme/theme_color.dart';
 import 'package:food_recipe/theme/theme_text.dart';
-import 'package:food_recipe/ui/pages/home/home.dart';
+import 'package:food_recipe/ui/pages/home/initial_home.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -70,7 +70,7 @@ class SplashScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => InitialHomePage(),
                           ),
                         );
                       },

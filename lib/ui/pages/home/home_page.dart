@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipe/bloc/b_new_recipe/bloc_new_recipe_bloc.dart';
 import 'package:food_recipe/theme/theme_color.dart';
 import 'package:food_recipe/theme/theme_text.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,21 +116,34 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     height: sy(200),
                     width: double.infinity,
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(
-                        left: 31,
-                      ),
-                      shrinkWrap: true,
-                      primary: false,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8,
-                          ),
-                          child: _newResep(),
-                        );
+                    child: BlocBuilder<NewRecipeBloc, NewRecipeState>(
+                      builder: (context, state) {
+                        if (state is NewRecipeLoadInProgress) {
+                          return Text('Loading');
+                        }
+                        if (state is NewRecipeLoadedSuccess) {
+                          return ListView.builder(
+                            padding: EdgeInsets.only(
+                              left: 31,
+                            ),
+                            shrinkWrap: true,
+                            primary: false,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 10,
+                            itemBuilder: (context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                  right: 8,
+                                ),
+                                child: _newResep(),
+                              );
+                            },
+                          );
+                        }
+                        if (state is NewRecipeLoadedError) {
+                          return Text(state.message);
+                        }
+                        return Container();
                       },
                     ),
                   ),

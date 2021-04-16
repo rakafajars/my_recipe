@@ -1,8 +1,11 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe/simple_bloc_observer.dart';
 
 import 'ui/pages/splash_screen/splash_screen.dart';
 
 void main() {
+  Bloc.observer = GlobalBlocObserver();
   runApp(MyApp());
 }
 

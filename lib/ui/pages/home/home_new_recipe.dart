@@ -20,7 +20,7 @@ class HomeNewRecipe extends StatefulWidget {
 }
 
 class _HomeNewRecipeState extends State<HomeNewRecipe> {
-  int selectFavoriteRecipe = -1;
+  bool isSelectedFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +72,11 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
                 );
               }
               if (state is NewRecipeLoadedSuccess) {
+                /// List Untuk Menampung data yang di tap
+                /// untuk favorite
+                List<ResultRecipe> selectedFavorite =
+                    state.modelNewRecipe.results;
+
                 return ListView.builder(
                   padding: EdgeInsets.only(
                     left: 31,
@@ -79,26 +84,24 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
                   shrinkWrap: true,
                   primary: false,
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.modelNewRecipe.results.length,
+                  itemCount: selectedFavorite.length,
                   itemBuilder: (context, int index) {
                     return Padding(
                       padding: const EdgeInsets.only(
                         right: 8,
                       ),
                       child: _newResep(
-                          index: index,
-                          resultRecipe: state.modelNewRecipe.results[index],
-                          onTap: () {
-                            setState(
-                              () {
-                                if (selectFavoriteRecipe == index) {
-                                  selectFavoriteRecipe = -1;
-                                } else {
-                                  selectFavoriteRecipe = index;
-                                }
-                              },
-                            );
-                          }),
+                        resultRecipe: selectedFavorite[index],
+                        onChangedFavorite: (bool value) {
+                          setState(
+                            () {
+                              if (value) {
+                                selectedFavorite.add(selectedFavorite[index]);
+                              }
+                            },
+                          );
+                        },
+                      ),
                     );
                   },
                 );
@@ -116,8 +119,7 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
 
   Widget _newResep({
     @required ResultRecipe resultRecipe,
-    @required VoidCallback onTap,
-    @required int index,
+    @required ValueChanged<bool> onChangedFavorite,
   }) {
     return RelativeBuilder(
       builder: (context, height, width, sy, sx) {
@@ -152,9 +154,14 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
                   shape: BoxShape.circle,
                 ),
                 child: GestureDetector(
-                  onTap: onTap,
+                  onTap: () {
+                    setState(() {
+                      isSelectedFavorite = !isSelectedFavorite;
+                      onChangedFavorite(isSelectedFavorite);
+                    });
+                  },
                   child: Icon(
-                    selectFavoriteRecipe != index
+                    isSelectedFavorite == false
                         ? Icons.bookmark_border_outlined
                         : Icons.bookmark,
                     size: sy(18),

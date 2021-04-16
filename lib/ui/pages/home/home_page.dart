@@ -8,6 +8,8 @@ import 'package:food_recipe/ui/pages/home/home_new_recipe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 
+import 'home_rekomendasi_recipe.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -187,131 +189,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: sy(86),
-                    margin: EdgeInsets.only(
-                      left: 31,
-                      right: 30,
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 18.0,
-                    ),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: Offset(1, 1), // cha
-                        )
-                      ],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          16.0,
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          height: sy(62),
-                          width: sy(60),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                'assets/splash_screen.png',
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(
-                                8.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 24,
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Nasi Goreng Rempah Malang',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: myNunitoSans.headline6.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                  color: blackColor,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.access_time,
-                                        size: 12,
-                                        color: blackColor.withOpacity(0.6),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        '10 Menit',
-                                        style: GoogleFonts.nunitoSans(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 10,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 24,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.people,
-                                        size: 12,
-                                        color: blackColor.withOpacity(0.6),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        'Mudah',
-                                        style: GoogleFonts.nunitoSans(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 10,
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  HomeRekomendasiRecioe(),
                 ],
               ),
             ),

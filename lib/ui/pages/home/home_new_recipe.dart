@@ -20,6 +20,8 @@ class HomeNewRecipe extends StatefulWidget {
 }
 
 class _HomeNewRecipeState extends State<HomeNewRecipe> {
+  int selectFavoriteRecipe = -1;
+
   @override
   Widget build(BuildContext context) {
     return RelativeBuilder(
@@ -84,8 +86,19 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
                         right: 8,
                       ),
                       child: _newResep(
-                        resultRecipe: state.modelNewRecipe.results[index],
-                      ),
+                          index: index,
+                          resultRecipe: state.modelNewRecipe.results[index],
+                          onTap: () {
+                            setState(
+                              () {
+                                if (selectFavoriteRecipe == index) {
+                                  selectFavoriteRecipe = -1;
+                                } else {
+                                  selectFavoriteRecipe = index;
+                                }
+                              },
+                            );
+                          }),
                     );
                   },
                 );
@@ -103,6 +116,8 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
 
   Widget _newResep({
     @required ResultRecipe resultRecipe,
+    @required VoidCallback onTap,
+    @required int index,
   }) {
     return RelativeBuilder(
       builder: (context, height, width, sy, sx) {
@@ -136,11 +151,16 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
                   ),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.bookmark,
-                  size: sy(18),
-                  color: Color(
-                    0xFF1DA183,
+                child: GestureDetector(
+                  onTap: onTap,
+                  child: Icon(
+                    selectFavoriteRecipe != index
+                        ? Icons.bookmark_border_outlined
+                        : Icons.bookmark,
+                    size: sy(18),
+                    color: Color(
+                      0xFF1DA183,
+                    ),
                   ),
                 ),
               ),

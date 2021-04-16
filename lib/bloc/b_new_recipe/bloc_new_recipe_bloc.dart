@@ -20,7 +20,6 @@ class NewRecipeBloc extends Bloc<NewRecipeEvent, NewRecipeState> {
     NewRecipeEvent event,
   ) async* {
     if (event is GetNewRecipeFromApi) {
-      yield NewRecipeLoadInProgress();
       try {
         _modelNewRecipe = await _repository.getNewRecipe();
 

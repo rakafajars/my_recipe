@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_recipe/bloc/b_new_recipe/bloc_new_recipe_bloc.dart';
 import 'package:food_recipe/theme/theme_color.dart';
 import 'package:food_recipe/theme/theme_text.dart';
+import 'package:food_recipe/ui/pages/home/home_new_recipe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 
@@ -113,44 +112,11 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 12,
                   ),
-                  Container(
-                    height: sy(200),
-                    width: double.infinity,
-                    child: BlocBuilder<NewRecipeBloc, NewRecipeState>(
-                      builder: (context, state) {
-                        if (state is NewRecipeLoadInProgress) {
-                          return Text('Loading');
-                        }
-                        if (state is NewRecipeLoadedSuccess) {
-                          return ListView.builder(
-                            padding: EdgeInsets.only(
-                              left: 31,
-                            ),
-                            shrinkWrap: true,
-                            primary: false,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                  right: 8,
-                                ),
-                                child: _newResep(),
-                              );
-                            },
-                          );
-                        }
-                        if (state is NewRecipeLoadedError) {
-                          return Text(state.message);
-                        }
-                        return Container();
-                      },
-                    ),
-                  ),
+                  /// Resep Terbaru
+                  HomeNewRecipe(),
                   SizedBox(
                     height: 14,
                   ),
-
                   /// Rekomendasi Resep
                   Padding(
                     padding: const EdgeInsets.only(
@@ -310,111 +276,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-        );
-      },
-    );
-  }
-
-  Widget _newResep() {
-    return RelativeBuilder(
-      builder: (context, height, width, sy, sx) {
-        return Stack(
-          children: [
-            Container(
-              height: sy(200),
-              width: sy(150),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  16.0,
-                ),
-                child: Image.asset(
-                  'assets/splash_screen.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Positioned(
-              top: sy(10),
-              left: sy(100),
-              child: Container(
-                height: sy(36),
-                width: sy(36),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(
-                    15,
-                    15,
-                    17,
-                    0.5,
-                  ),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.bookmark,
-                  size: sy(18),
-                  color: Color(
-                    0xFF1DA183,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 14,
-              right: 14,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  12.0,
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 5,
-                    sigmaY: 5,
-                  ),
-                  child: Container(
-                    height: sy(60),
-                    width: sy(150),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF141414).withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(
-                        12.0,
-                      ),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(
-                          0.15,
-                        ),
-                        width: 0.2,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Sate Ayam Khas\nPurwakarta',
-                          style: GoogleFonts.nunitoSans(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          '20 Menit | Mudah',
-                          style: GoogleFonts.nunitoSans(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
         );
       },
     );

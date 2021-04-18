@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe/bloc/b_new_recipe/bloc_new_recipe_bloc.dart';
 import 'package:food_recipe/model/m_new_recipe.dart';
+import 'package:food_recipe/ui/pages/detail_recipe/detail_recipe_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 import 'package:shimmer/shimmer.dart';
@@ -123,121 +124,138 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
   }) {
     return RelativeBuilder(
       builder: (context, height, width, sy, sx) {
-        return Stack(
-          children: [
-            Container(
-              height: sy(200),
-              width: sy(150),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  16.0,
-                ),
-                child: Image.network(
-                  resultRecipe.thumb,
-                  fit: BoxFit.cover,
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailRecipeView(
+                  imageUrl: resultRecipe.thumb,
                 ),
               ),
-            ),
-            Positioned(
-              top: sy(10),
-              left: sy(100),
-              child: Container(
-                height: sy(36),
-                width: sy(36),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(
-                    15,
-                    15,
-                    17,
-                    0.5,
+            );
+          },
+          child: Stack(
+            children: [
+              Container(
+                height: sy(200),
+                width: sy(150),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    16.0,
                   ),
-                  shape: BoxShape.circle,
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isSelectedFavorite = !isSelectedFavorite;
-                      onChangedFavorite(isSelectedFavorite);
-                    });
-                  },
-                  child: Icon(
-                    isSelectedFavorite == false
-                        ? Icons.bookmark_border_outlined
-                        : Icons.bookmark,
-                    size: sy(18),
-                    color: Color(
-                      0xFF1DA183,
+                  child: Hero(
+                    tag: resultRecipe.thumb,
+                    child: Image.network(
+                      resultRecipe.thumb,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 14,
-              right: 14,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  12.0,
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 5,
-                    sigmaY: 5,
+              Positioned(
+                top: sy(10),
+                left: sy(100),
+                child: Container(
+                  height: sy(36),
+                  width: sy(36),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(
+                      15,
+                      15,
+                      17,
+                      0.5,
+                    ),
+                    shape: BoxShape.circle,
                   ),
-                  child: Container(
-                    height: sy(60),
-                    width: sy(150),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF141414).withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(
-                        12.0,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isSelectedFavorite = !isSelectedFavorite;
+                        onChangedFavorite(isSelectedFavorite);
+                      });
+                    },
+                    child: Icon(
+                      isSelectedFavorite == false
+                          ? Icons.bookmark_border_outlined
+                          : Icons.bookmark,
+                      size: sy(18),
+                      color: Color(
+                        0xFF1DA183,
                       ),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(
-                          0.15,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 10,
+                left: 14,
+                right: 14,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    12.0,
+                  ),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 5,
+                      sigmaY: 5,
+                    ),
+                    child: Container(
+                      height: sy(60),
+                      width: sy(150),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF141414).withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(
+                          12.0,
                         ),
-                        width: 0.2,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 4,
-                            right: 4,
+                        border: Border.all(
+                          color: Colors.white.withOpacity(
+                            0.15,
                           ),
-                          child: Text(
-                            resultRecipe.key.replaceAll('-', ' ').toUpperCase(),
-                            style: GoogleFonts.nunitoSans(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              fontSize: 14,
+                          width: 0.2,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 4,
+                              right: 4,
                             ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                            child: Text(
+                              resultRecipe.key
+                                  .replaceAll('-', ' ')
+                                  .toUpperCase(),
+                              style: GoogleFonts.nunitoSans(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Text(
+                            '${resultRecipe.portion} | ${resultRecipe.dificulty}',
+                            style: GoogleFonts.nunitoSans(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
                             textAlign: TextAlign.center,
                           ),
-                        ),
-                        Text(
-                          '${resultRecipe.portion} | ${resultRecipe.dificulty}',
-                          style: GoogleFonts.nunitoSans(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

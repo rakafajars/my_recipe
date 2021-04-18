@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe/bloc/b_new_recipe/bloc_new_recipe_bloc.dart';
+import 'package:food_recipe/bloc/b_rekomendasi_recipe/rekomendasi_recipe_bloc.dart';
 import 'package:food_recipe/theme/theme_color.dart';
 import 'package:food_recipe/theme/theme_text.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,9 +44,9 @@ class _HomeRekomendasiRecioeState extends State<HomeRekomendasiRecioe> {
               ),
             ),
           ),
-          child: BlocBuilder<NewRecipeBloc, NewRecipeState>(
+          child: BlocBuilder<RekomendasiRecipeBloc, RekomendasiRecipeState>(
             builder: (context, state) {
-              if (state is NewRecipeLoadInProgress) {
+              if (state is RekomendasiRecipeLoadInProgress) {
                 return Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -111,7 +112,7 @@ class _HomeRekomendasiRecioeState extends State<HomeRekomendasiRecioe> {
                   ],
                 );
               }
-              if (state is NewRecipeLoadedSuccess) {
+              if (state is RekomendasiRecipeLoadInProgressRecipeLoadedSuccess) {
                 var itemRekomendasiFirst = state.modelNewRecipe.results.last;
                 return Row(
                   mainAxisSize: MainAxisSize.max,
@@ -210,7 +211,7 @@ class _HomeRekomendasiRecioeState extends State<HomeRekomendasiRecioe> {
                   ],
                 );
               }
-              if (state is NewRecipeLoadedError) {
+              if (state is RekomendasiRecipeLoadedError) {
                 return Text(state.message);
               }
               return Container();

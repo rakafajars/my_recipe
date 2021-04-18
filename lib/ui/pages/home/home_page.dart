@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 import 'home_rekomendasi_recipe.dart';
+import 'home_search_recipe.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -77,56 +78,26 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   /// Search Widget
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 31,
-                      right: 31,
-                    ),
-                    decoration: BoxDecoration(
-                      color: whiteColor1,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          16.0,
-                        ),
-                      ),
-                    ),
-                    child: TextFormField(
-                      controller: _searchRecipe,
-                      onChanged: (newValue) {
-                        if (newValue.length >= 3) {
-                          _newRecipeBloc
-                            ..add(
-                              SearchnewRecipeFromApi(
-                                search: newValue,
-                              ),
-                            );
-                        }
-                        if (newValue.isEmpty) {
-                          _newRecipeBloc
-                            ..add(
-                              GetNewRecipeFromApi(),
-                            );
-                        }
-                      },
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(
-                          Icons.search_sharp,
-                          size: 14,
-                          color: blackColor.withOpacity(
-                            0.6,
-                          ),
-                        ),
-                        hintText: 'Cari Resep Favorit Kamu',
-                        hintStyle: myNunitoSans.headline3.copyWith(
-                          fontSize: 14,
-                          color: blackColor.withOpacity(
-                            0.6,
-                          ),
-                        ),
-                      ),
-                    ),
+                  HomeSearchRecipe(
+                    controller: _searchRecipe,
+                    onChanged: (newValue) {
+                      if (newValue.length >= 3) {
+                        _newRecipeBloc
+                          ..add(
+                            SearchnewRecipeFromApi(
+                              search: newValue,
+                            ),
+                          );
+                      }
+                      if (newValue.isEmpty) {
+                        _newRecipeBloc
+                          ..add(
+                            GetNewRecipeFromApi(),
+                          );
+                      }
+                    },
                   ),
+
                   SizedBox(
                     height: 12,
                   ),
@@ -154,7 +125,6 @@ class _HomePageState extends State<HomePage> {
                   HomeNewRecipe(
                     newRecipeBloc: _newRecipeBloc,
                   ),
-
                   SizedBox(
                     height: 14,
                   ),
@@ -183,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                           style: myHalant.headline6.copyWith(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
-                            color: grenColor1,
+                            color: grenColor,
                           ),
                         ),
                       ],

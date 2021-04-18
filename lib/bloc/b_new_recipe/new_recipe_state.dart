@@ -14,7 +14,6 @@ class NewRecipeLoadInProgress extends NewRecipeState {
   List<Object> get props => [];
 }
 
-
 class NewRecipeLoadedSuccess extends NewRecipeState {
   final ModelNewRecipe modelNewRecipe;
 

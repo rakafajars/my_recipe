@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 final myNunitoSans = TextTheme(
   headline1: GoogleFonts.nunitoSans(
-    fontSize: 104,
+    fontSize: 15,
     fontWeight: FontWeight.w300,
-    letterSpacing: -1.5,
+    fontStyle: FontStyle.normal,
   ),
   headline2: GoogleFonts.nunitoSans(
     fontSize: 65,

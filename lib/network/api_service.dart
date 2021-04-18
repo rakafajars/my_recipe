@@ -37,4 +37,19 @@ class ApiService implements Repository {
       throw showException(error, stacktrace);
     }
   }
+
+  @override
+  Future<ModelNewRecipe> getRekomendasiRecipe() async {
+    try {
+      Response response = await dio.get(
+        'api/recipes-length/?limit=10',
+      );
+      print(response.data);
+      return ModelNewRecipe.fromJson(
+        response.data,
+      );
+    } catch (error, stacktrace) {
+      throw showException(error, stacktrace);
+    }
+  }
 }

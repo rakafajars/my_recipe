@@ -6,4 +6,6 @@ abstract class Repository {
   Future<ModelNewRecipe> searchNewRecipe({
     String search,
   });
+
+  Future<ModelNewRecipe> getRekomendasiRecipe();
 }

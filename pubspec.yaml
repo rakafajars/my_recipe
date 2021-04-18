@@ -20,7 +20,7 @@ dependencies:
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
   shimmer: ^2.0.0
-
+  draggable_bottom_sheet: ^0.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

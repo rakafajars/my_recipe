@@ -56,22 +56,22 @@ class _DetailRecipeViewState extends State<DetailRecipeView> {
                               left: 24,
                               right: 24,
                             ),
-                            child: Container(
-                              height: sy(36),
-                              width: sy(36),
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(
-                                  15,
-                                  15,
-                                  17,
-                                  0.5,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                height: sy(36),
+                                width: sy(36),
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(
+                                    15,
+                                    15,
+                                    17,
+                                    0.5,
+                                  ),
+                                  shape: BoxShape.circle,
                                 ),
-                                shape: BoxShape.circle,
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
                                 child: Icon(
                                   Icons.arrow_back_outlined,
                                   size: 18,

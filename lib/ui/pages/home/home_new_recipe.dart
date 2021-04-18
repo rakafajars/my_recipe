@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe/bloc/b_new_recipe/bloc_new_recipe_bloc.dart';
 import 'package:food_recipe/model/m_new_recipe.dart';
 import 'package:food_recipe/ui/pages/detail_recipe/detail_recipe_view.dart';
+import 'package:food_recipe/ui/pages/detail_recipe/initial_detail_recipe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 import 'package:shimmer/shimmer.dart';
@@ -129,7 +130,8 @@ class _HomeNewRecipeState extends State<HomeNewRecipe> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailRecipeView(
+                builder: (context) => InitialDetailRecipe(
+                  keyRecipe: resultRecipe.key,
                   imageUrl: resultRecipe.thumb,
                 ),
               ),

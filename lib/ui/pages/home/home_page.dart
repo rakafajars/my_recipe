@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  HomeRekomendasiRecioe(),
+                  HomeRekomendasiRecipe(),
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:food_recipe/model/m_detail_recipe.dart';
 import 'package:food_recipe/model/m_new_recipe.dart';
 import 'package:food_recipe/network/dio_client.dart';
 import 'package:food_recipe/network/network_error.dart';
@@ -46,6 +47,21 @@ class ApiService implements Repository {
       );
       print(response.data);
       return ModelNewRecipe.fromJson(
+        response.data,
+      );
+    } catch (error, stacktrace) {
+      throw showException(error, stacktrace);
+    }
+  }
+
+  @override
+  Future<ModelDetailRecipe> getDetailRecipe({String keyRecipe}) async {
+    try {
+      Response response = await dio.get(
+        'api/recipe/$keyRecipe',
+      );
+      print(response.data);
+      return ModelDetailRecipe.fromJson(
         response.data,
       );
     } catch (error, stacktrace) {

@@ -8,12 +8,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:relative_scale/relative_scale.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeRekomendasiRecioe extends StatefulWidget {
+class HomeRekomendasiRecipe extends StatefulWidget {
   @override
-  _HomeRekomendasiRecioeState createState() => _HomeRekomendasiRecioeState();
+  _HomeRekomendasiRecipeState createState() => _HomeRekomendasiRecipeState();
 }
 
-class _HomeRekomendasiRecioeState extends State<HomeRekomendasiRecioe> {
+class _HomeRekomendasiRecipeState extends State<HomeRekomendasiRecipe> {
   @override
   Widget build(BuildContext context) {
     return RelativeBuilder(
@@ -162,10 +162,10 @@ class _HomeRekomendasiRecioeState extends State<HomeRekomendasiRecioe> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.people,
-                                    size: 12,
-                                    color: blackColor.withOpacity(0.6),
+                                  Image.asset(
+                                      'assets/clock.png',
+                                    height: 14,
+                                    width: 14,
                                   ),
                                   SizedBox(
                                     width: 4,
@@ -186,11 +186,11 @@ class _HomeRekomendasiRecioeState extends State<HomeRekomendasiRecioe> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.access_time,
-                                    size: 12,
-                                    color: blackColor.withOpacity(0.6),
-                                  ),
+                                 Image.asset(
+                                   'assets/kesulitan.png',
+                                   height: 14,
+                                   width: 14,
+                                 ),
                                   SizedBox(
                                     width: 4,
                                   ),
